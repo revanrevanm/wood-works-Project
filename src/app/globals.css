@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 50% 98%;
+    --foreground: 22 23% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 22 23% 12%;
+    --primary: 27 36% 17%;
+    --primary-foreground: 40 50% 98%;
+    --secondary: 43 53% 54%;
+    --secondary-foreground: 27 36% 14%;
+    --muted: 36 33% 92%;
+    --muted-foreground: 27 12% 38%;
+    --accent: 43 53% 54%;
+    --accent-foreground: 27 36% 14%;
+    --border: 33 25% 86%;
+    --input: 33 25% 86%;
+    --ring: 43 53% 54%;
+    --radius: 0.9rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    background-image: theme("backgroundImage.wood-grain");
+  }
+
+  ::selection {
+    background: #c9a24b;
+    color: #1a110b;
+  }
+
+  /* Premium custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 11px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f4ece0;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #6b4e33;
+    border-radius: 99px;
+    border: 2px solid #f4ece0;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3a271b;
+  }
+}
+
+@layer components {
+  .container-prose {
+    @apply mx-auto w-full max-w-7xl px-6 md:px-10;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.28em] text-teak-600;
+  }
+
+  .text-gold-gradient {
+    @apply bg-gold-sheen bg-clip-text text-transparent;
+    background-size: 200% auto;
+  }
+
+  /* thin elegant divider line */
+  .hairline {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-teak/40 to-transparent;
+  }
+
+  .glass-dark {
+    background: rgba(28, 23, 20, 0.55);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+  }
+}
+
+@layer utilities {
+  .balance {
+    text-wrap: balance;
+  }
+  .perspective {
+    perspective: 1200px;
+  }
+  /* hides content visually until JS hydration to avoid flash on reveal animations */
+  .reveal-hidden {
+    opacity: 0;
+  }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
